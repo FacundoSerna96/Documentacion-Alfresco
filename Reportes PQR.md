@@ -56,7 +56,7 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
 	GROUP BY PROC_INST_ID_
 ~~~
 
-_Tiempo de duración de la consulta:  2.922 s_
+_Tiempo de duración de la consulta:   363ms_
 
 ***
 
@@ -80,7 +80,7 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
     GROUP BY PROC_INST_ID_
 ~~~
 
-_Tiempo de duración de la consulta:  2.922 s_
+_Tiempo de duración de la consulta:  706ms_
 
 
 ***
@@ -104,7 +104,7 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
     GROUP BY PROC_INST_ID_
 ~~~
 
-_Tiempo de duración de la consulta:  2.922 s_
+_Tiempo de duración de la consulta:  937ms_
 
 ***
 
@@ -128,7 +128,7 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
     GROUP BY PROC_INST_ID_
 ~~~
 
-_Tiempo de duración de la consulta:  2.922 s_
+_Tiempo de duración de la consulta:  981ms_
 
 ***
 
@@ -154,7 +154,7 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
     GROUP BY PROC_INST_ID_
 ~~~
 
-_Tiempo de duración de la consulta:  2.922 s_
+_Tiempo de duración de la consulta:  928ms_
 
 
 ***
@@ -178,7 +178,7 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
     GROUP BY PROC_INST_ID_
 ~~~
 
-_Tiempo de duración de la consulta:  2.922 s_
+_Tiempo de duración de la consulta:  913ms_
 
 
 ***
@@ -203,7 +203,7 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
     GROUP BY PROC_INST_ID_
 ~~~
 
-_Tiempo de duración de la consulta:  2.922 s_
+_Tiempo de duración de la consulta:  913ms_
 
 
 ### Para Correspondencia General y Facturas
@@ -230,7 +230,7 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
     GROUP BY PROC_INST_ID_
 ~~~
 
-_Tiempo de duración de la consulta:  2.922 s_
+_Tiempo de duración de la consulta:  1.122s_
 
 
 ### Para Fraudes
@@ -249,7 +249,7 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
     GROUP BY PROC_INST_ID_
 ~~~
 
-_Tiempo de duración de la consulta:  2.922 s_
+_Tiempo de duración de la consulta:  709ms_
 
 
 ### Para Legal
@@ -268,7 +268,7 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
     GROUP BY PROC_INST_ID_
 ~~~
 
-_Tiempo de duración de la consulta:  2.922 s_
+_Tiempo de duración de la consulta:  2.459s_
 
 
 
