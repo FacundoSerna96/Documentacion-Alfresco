@@ -143,16 +143,15 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
     MAX(CASE WHEN NAME_ = 'fecRadicado' THEN TEXT_ END) as 'fecha',
     MAX(CASE WHEN NAME_ = 'nombreRadicador' THEN TEXT_ END) as 'usuario creacion',
     MAX(CASE WHEN NAME_ = 'nombreTramita' THEN TEXT_ END) as 'asignado'
-
 	from activiti.ACT_RU_VARIABLE
-  where PROC_INST_ID_ in (
-    select PROC_INST_ID_  from activiti.ACT_RU_VARIABLE
-	    where 
-        TEXT_ = "2212000248" and NAME_ = "numRadicado" AND
-		    TEXT_ = "UNE EPM Telecomunicaciones S.A." and NAME_ = "compania_LABEL" or
-        NAME_ = "fecRadicado" AND TEXT_ between '23-09-2020' AND '24-09-2020'
-      )
-	GROUP BY PROC_INST_ID_
+	  where PROC_INST_ID_ in (
+	    select PROC_INST_ID_  from activiti.ACT_RU_VARIABLE
+		    where 
+		TEXT_ = "2212000248" and NAME_ = "numRadicado" AND
+			    TEXT_ = "UNE EPM Telecomunicaciones S.A." and NAME_ = "compania_LABEL" or
+		NAME_ = "fecRadicado" AND TEXT_ between '23-09-2020' AND '24-09-2020'
+	      )
+    GROUP BY PROC_INST_ID_
 ~~~
 
 _Tiempo de duración de la consulta:  2.922 s_
@@ -176,6 +175,96 @@ select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
       select PROC_INST_ID_  from activiti.ACT_RU_VARIABLE
         where TEXT_ = "Solicitudes y peticiones generales PQR" and NAME_ = "tipoAsunto_LABEL" 
         )
+    GROUP BY PROC_INST_ID_
+~~~
+
+_Tiempo de duración de la consulta:  2.922 s_
+
+
+***
+
+## Consultas para los componentes de reportes (PQR, Correspondencia General, Fraudes, Legal)
+
+### Para PQR
+~~~sql
+select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
+    MAX(CASE WHEN NAME_ = 'numRadicado' THEN TEXT_ END) as 'radicado',
+    MAX(CASE WHEN NAME_ = 'compania_LABEL' THEN TEXT_ END) as 'compañia',
+    MAX(CASE WHEN NAME_ = 'tipoAsunto_LABEL' THEN TEXT_ END) as 'asunto', 
+    MAX(CASE WHEN NAME_ = 'tramitador_LABEL' THEN TEXT_ END) as 'tramitador',
+    MAX(CASE WHEN NAME_ = 'fecRadicado' THEN TEXT_ END) as 'fecha',
+    MAX(CASE WHEN NAME_ = 'nombreRadicador' THEN TEXT_ END) as 'usuario creacion',
+    MAX(CASE WHEN NAME_ = 'nombreTramita' THEN TEXT_ END) as 'asignado'
+    from activiti.ACT_RU_VARIABLE
+    where PROC_INST_ID_ in (
+      select PROC_INST_ID_  from activiti.ACT_RU_VARIABLE
+        where TEXT_ = "Solicitudes y peticiones generales PQR" and NAME_ = "tipoAsunto_LABEL" 
+        )
+    GROUP BY PROC_INST_ID_
+~~~
+
+_Tiempo de duración de la consulta:  2.922 s_
+
+
+### Para Correspondencia General y Facturas
+~~~sql
+select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
+    MAX(CASE WHEN NAME_ = 'nomRemitente' THEN TEXT_ END) as 'Procedencia', 
+    MAX(CASE WHEN NAME_ = 'numRadicado' THEN TEXT_ END) as 'radicado',
+    MAX(CASE WHEN NAME_ = 'tipoAsunto_LABEL' THEN TEXT_ END) as 'asunto', 
+    MAX(CASE WHEN NAME_ = 'fecRadicado' THEN TEXT_ END) as 'fecha',
+    MAX(CASE WHEN NAME_ = 'tramitador_LABEL' THEN TEXT_ END) as 'tramitador'   
+	from activiti.ACT_RU_VARIABLE
+	  where PROC_INST_ID_ in (
+	    select PROC_INST_ID_  from activiti.ACT_RU_VARIABLE
+		    where TEXT_ = "Gestión de correspondencia general" OR 
+			TEXT_ = "Facturas arrendamiento inmuebles" OR 
+			TEXT_ = "Facturas impuesto predial" OR 
+			TEXT_ = "Facturas arrendamiento antenas" OR 
+			TEXT_ = "Facturas título valor" OR 
+			TEXT_ = "Gestión Pagos servicios Públicos" OR 
+			TEXT_ = "Facturas / Cuentas de cobro proveedores" OR 
+			TEXT_ = "Facturas servicios públicos" OR 
+			TEXT_ = "Facturas impuestos generales" and NAME_ = "tipoAsunto_LABEL" 
+	      )
+    GROUP BY PROC_INST_ID_
+~~~
+
+_Tiempo de duración de la consulta:  2.922 s_
+
+
+### Para Fraudes
+~~~sql
+select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
+    MAX(CASE WHEN NAME_ = 'nomRemitente' THEN TEXT_ END) as 'Procedencia', 
+    MAX(CASE WHEN NAME_ = 'numRadicado' THEN TEXT_ END) as 'radicado',
+    MAX(CASE WHEN NAME_ = 'tipoAsunto_LABEL' THEN TEXT_ END) as 'asunto', 
+    MAX(CASE WHEN NAME_ = 'fecRadicado' THEN TEXT_ END) as 'fecha',
+    MAX(CASE WHEN NAME_ = 'tramitador_LABEL' THEN TEXT_ END) as 'tramitador'   
+	from activiti.ACT_RU_VARIABLE
+	  where PROC_INST_ID_ in (
+	    select PROC_INST_ID_  from activiti.ACT_RU_VARIABLE
+		    where TEXT_ = "Gestión requerimientos judiciales" and NAME_ = "tipoAsunto_LABEL" 
+	      )
+    GROUP BY PROC_INST_ID_
+~~~
+
+_Tiempo de duración de la consulta:  2.922 s_
+
+
+### Para Legal
+~~~sql
+select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',    
+    MAX(CASE WHEN NAME_ = 'nomRemitente' THEN TEXT_ END) as 'Procedencia', 
+    MAX(CASE WHEN NAME_ = 'numRadicado' THEN TEXT_ END) as 'radicado',
+    MAX(CASE WHEN NAME_ = 'tipoAsunto_LABEL' THEN TEXT_ END) as 'asunto', 
+    MAX(CASE WHEN NAME_ = 'fecRadicado' THEN TEXT_ END) as 'fecha',
+    MAX(CASE WHEN NAME_ = 'tramitador_LABEL' THEN TEXT_ END) as 'tramitador'   
+	from activiti.ACT_RU_VARIABLE
+	  where PROC_INST_ID_ in (
+	    select PROC_INST_ID_  from activiti.ACT_RU_VARIABLE
+		    where TEXT_ = "Demandas" OR TEXT_ = "Tutelas" OR TEXT_ = "Requerimientos Legales" and NAME_ = "tipoAsunto_LABEL" 
+      )
     GROUP BY PROC_INST_ID_
 ~~~
 
