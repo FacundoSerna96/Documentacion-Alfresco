@@ -183,6 +183,35 @@ _Tiempo de duración de la consulta:  913ms_
 
 ***
 
+
+### Con paginado
+
+Para paginarlo se necesita un limit (ej:4) y un offset (ej:3).
+
+~~~sql
+select ACT_RU_VARIABLE.PROC_INST_ID_ as 'ID',
+    MAX(CASE WHEN NAME_ = 'numRadicado' THEN TEXT_ END) as 'radicado',
+    MAX(CASE WHEN NAME_ = 'compania_LABEL' THEN TEXT_ END) as 'compañia',
+    MAX(CASE WHEN NAME_ = 'tipoAsunto_LABEL' THEN TEXT_ END) as 'asunto', 
+    MAX(CASE WHEN NAME_ = 'tramitador_LABEL' THEN TEXT_ END) as 'tramitador',
+    MAX(CASE WHEN NAME_ = 'fecRadicado' THEN TEXT_ END) as 'fecha',
+    MAX(CASE WHEN NAME_ = 'nombreRadicador' THEN TEXT_ END) as 'usuario creacion',
+    MAX(CASE WHEN NAME_ = 'nombreTramita' THEN TEXT_ END) as 'asignado'
+    from activiti.ACT_RU_VARIABLE
+    where PROC_INST_ID_ in (
+      select PROC_INST_ID_  from activiti.ACT_RU_VARIABLE
+        where TEXT_ = "Solicitudes y peticiones generales PQR" and NAME_ = "tipoAsunto_LABEL" 
+        )
+    GROUP BY PROC_INST_ID_
+    	LIMIT 4 OFFSET 3
+~~~
+
+_Tiempo de duración de la consulta:  819ms_
+
+
+
+***
+
 ## Consultas para los componentes de reportes (PQR, Correspondencia General, Fraudes, Legal)
 
 ### Para PQR
